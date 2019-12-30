@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- head của Admin -->
+  <% include ../shared/head %>
+</head>
+
+<body id="page-top">
+
+  <!-- header của trang Admin -->
+  <% include ../shared/header %>
+  <div id="wrapper">
+
+    <!-- navigation của Admin -->
+    <% include ../shared/navigation %>
+
+    <!-- main của trang Admin -->
+    <div id="content-wrapper">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#">Quản lý Tour</a>
+        </li>
+        <li class="breadcrumb-item active">Danh Sách Tour</li>
+        <a href="/admin/new/tour" class="mt-auto ml-auto"><button class="btn btn-primary">Thêm mới</button></a>
+      </ol>
+
+      <!-- Tour của trang Admin -->
+      <div class="p-3">
+        <table class="table table-striped border border-primary">
+          <tdead>
+            <tr class="table-primary">
+              <!-- danh mục hiển tdị -->
+              <% for (const danhmuc of arrdanhmuc){ %>
+              <th>
+                <%= danhmuc %>
+              </th>
+              <% }; %>
+            </tr>
+          </tdead>
+          <tbody id="tbodyId">
+            <% tours.forEach(element => { %>
+            <tr>
+              <td><%=element.nameTour %></td>
+              <td><%=element.vehicle %></td>
+              <td><%=element.dateStart %></td>
+              <td><%=element.price %></td>
+              <td><%=element.priceChildren %></td>
+              <td><%=element.status %></td>
+              <td>
+                <a href="/admin/tour/<%=element._id%>"><button type="button" class="btn btn-primary">Xem</button></a>
+              </td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- footer của admin -->
+    <% include ../shared/footer %>
+  </div>
+
+  <!-- Javascript -->
+  <% include ../shared/Javascripts %>
+</body>
+
+</html>

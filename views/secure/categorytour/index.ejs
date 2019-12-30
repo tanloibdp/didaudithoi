@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- head của Admin -->
+  <% include ../shared/head %>
+</head>
+
+<body id="page-top">
+
+  <!-- header của trang Admin -->
+  <% include ../shared/header %>
+  <div id="wrapper">
+
+    <!-- navigation của Admin -->
+    <% include ../shared/navigation %>
+
+    <!-- main của trang Admin -->
+    <div id="content-wrapper">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#">Quản lý Tour</a>
+        </li>
+        <li class="breadcrumb-item active">Loại Tour du lịch</li>
+        <a href="/admin/new/categorytour" class="mt-auto ml-auto"><button class="btn btn-primary">Thêm mới</button></a>
+      </ol>
+
+      <!-- Catelog Tour của trang Admin -->
+      <div class="p-3">
+        <table class="table table-striped border border-primary">
+          <tdead>
+            <tr class="table-primary">
+              <th>
+                <form action="" method="POST">
+                  <select id="selectCate" onchange="requestSelect()" class="custom-select" name="reqSelect">
+                    <% if(reqSelect===0){%>
+                    <option value="default" selected>Tất cả loại tour</option>
+                    <%}else{%>
+                    <option value="default">Tất cả loại tour</option>
+                    <%}%>
+                    <% for (const item of select){ %>
+                    <%if((select.indexOf(item)+1)===reqSelect){%>
+                    <option value="<%=(select.indexOf(item)+1)%>" selected><%=item%></option>
+                    <%}else{%>
+                    <option value="<%=(select.indexOf(item)+1)%>"><%=item%></option>
+                    <% }}; %>
+                  </select>
+                  <button type="submit" id='btns'></button>
+                </form>
+              </th>
+              <!-- danh mục hiển tdị -->
+              <% for (const danhmuc of arrdanhmuc){ %>
+              <th>
+                <%= danhmuc %>
+              </th>
+              <% }; %>
+            </tr>
+          </tdead>
+          <% catagoryTour.forEach(element => { %>
+          <tr>
+            <td><%=element.catagory %></td>
+            <td><%=element.zone %></td>
+            <td>
+              <a href="/admin/categorytour/<%=element._id%>"><button type="button"
+                  class="btn btn-primary">Xem</button></a>
+            </td>
+          </tr>
+          <% }); %>
+        </table>
+      </div>
+    </div>
+
+    <!-- footer của admin -->
+    <% include ../shared/footer %>
+  </div>
+
+  <!-- Javascript -->
+  <% include ../shared/Javascripts %>
+  <script>
+    const btns = document.getElementById('btns');
+    btns.hidden = true;
+    function requestSelect() {
+      btns.click();
+    };
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<% if(typeof(values) =="undefined"){
+    var displayname= "";
+    var emailSignUp= "";
+    var phoneNumber= "";
+}else if(values){
+    var displayname=values.displayname;
+    var emailSignUp=values.emailSignUp;
+    var phoneNumber=values.phoneNumber;
+}%>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ./shared/headSign%>
+    <title>Didaudithoi.com</title>
+</head>
+
+<body>
+    <div class="card bg-light">
+        <article class="card-body mx-auto" style="max-width: 400px;">
+            <h4 class="card-title mt-3 text-center">TẠO TÀI KHOẢN</h4>
+            <p class="text-center">Vi vu khắp Việt Nam, tạo tài khoản miễn phí ngay !</p>
+            <p>
+                <a href="" class="btn btn-block btn-google"> <i class="fab fa-google"></i>   Đăng nhập bằng Google</a>
+                <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i> Đăng nhập bằng
+                    Facebook</a>
+            </p>
+            <p class="divider-text">
+                <span class="bg-light">HOẶC</span>
+            </p>
+            <form action="" method="POST">
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input name="displayname" value="<%=displayname%>" class="form-control" placeholder="Họ và tên" type="text" required
+                        autofocus>
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                    </div>
+                    <input name="emailSignUp" value="<%=emailSignUp%>" class="form-control" placeholder="E-mail" type="email" required>
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                    </div>
+                    <input name="phoneNumber" value="<%=phoneNumber%>" class="form-control" placeholder="Điện thoại" type="number" required>
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input name="passwordSignUp" class="form-control" placeholder="Mật khẩu" type="password" required>
+                </div> <!-- form-group// -->
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input name="repasswordSignUp" class="form-control" placeholder="Nhập lại mật khẩu" type="password"
+                        required>
+                </div> <!-- form-group// -->
+
+                <% include ./shared/alertErrors %>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block"> Tạo Tài khoản </button>
+                </div> <!-- form-group// -->
+                <p class="text-center">Đã có tài khoản? <a href="/signin">Đăng nhập</a> </p>
+            </form>
+        </article>
+    </div> <!-- card.// -->
+
+    </div>
+    <!--container end.//-->
+</body>
+
+</html>

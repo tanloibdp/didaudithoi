@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- head của Admin -->
+    <% include ../shared/head %>
+</head>
+
+<body id="page-top">
+
+    <!-- header của trang Admin -->
+    <% include ../shared/header %>
+    <div id="wrapper">
+
+        <!-- navigation của Admin -->
+        <% include ../shared/navigation %>
+
+        <!-- main của trang Admin -->
+        <div id="content-wrapper">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#">Quản lý Tour</a>
+                </li>
+                <li class="breadcrumb-item active">Điểm khởi hành</li>
+                <button class="btn btn-primary mt-auto ml-auto" data-toggle="modal" data-target="#exampleModaladd">Thêm
+                    mới</button>
+            </ol>
+            <!-- Modal thêm -->
+            <div class="modal fade" id="exampleModaladd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Thêm mới địa điểm khởi hành!</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="/admin/new/placeStart" method="POST">
+                            <div class="modal-body">
+                                <div class="form-group row pl-5">
+                                    <label class="col-form-label form-control-label">Địa điểm:</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" type="text" name="placeStart" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row pl-5">
+                                    <label class="col-form-label form-control-label">Ghi chú thêm:</label>
+                                    <div class="col-lg-9">
+                                        <input class="form-control" type="text" name="description">
+                                    </div>
+                                </div>
+                            </div>
+                            <% if(typeof(error)!=='undefined'){%>
+                            <div class="form-group row pl-5">
+                                <label class="col-lg-2 col-form-label form-control-label"></label>
+                                <div class="col-lg-9">
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <strong><%=error%></strong>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <%}%>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Không nha</button>
+                                <button type="submit" class="btn btn-primary">Thêm vào!</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+        
+                <!-- footer của admin -->
+                <% include ../shared/footer %>
+                    </div>
+                    <div class="p-3">
+                        <table class="table table-striped border border-primary">
+                            <tdead>
+                                <tr class="table-primary">
+                                    <!-- danh mục hiển tdị -->
+                                    <% for (const danhmuc of arrdanhmuc){ %>
+                                    <th>
+                                        <%= danhmuc %>
+                                    </th>
+                                    <% }; %>
+                                </tr>
+                            </tdead>
+                            <% placeStart.forEach(element => { %>
+                            <tr>
+                                <td><%=element.placeStart %></td>
+                                <td><%=element.description %></td>
+                                <td>
+                                    <button type="button" class="btn btn-danger mt-auto" data-toggle="modal"
+                                        data-target="#<%=element._id%>">
+                                        Xóa
+                                    </button>
+                                </td>
+                                <!-- Modal xóa -->
+                                <div class="modal fade" id="<%=element._id%>" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Hỏi Lại Cho Chắc!</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Bạn Có Thật Sự Muốn Xóa Nội Dung Này?????????
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Không nha</button>
+                                                <a href="/admin/delete/placeStart/<%=element._id%>"><button
+                                                        type="button" class="btn btn-primary">Đúng rồi!</button></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </tr>
+                            <% }); %>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Javascript -->
+            <% include ../shared/Javascripts %>
+</body>
+
+</html>

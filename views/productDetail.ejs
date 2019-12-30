@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ./shared/head %>
+    <% include ./shared/product/headExtra%>
+</head>
+
+<body>
+    <% include ./shared/header %>
+    <div class="container">
+
+        <div class="text-center text-uppercase">
+            <h2>Chi Tiết Tour</h2>
+        </div>
+        <div class="card">
+            <div class="container-fliud">
+                <h3></h3>
+                <div class="wrapper row">
+                    <div class="preview col-md-6">
+
+                        <div class="preview-pic tab-content">
+                            <% if(typeof(doc.image) =="undefined"){%>
+                            <%}else if(doc.image){%>
+                            <div class="tab-pane active" id="pic-1"><img src="<%=doc.image%>" /></div>
+                            <%}%>
+                            <% if(typeof(doc.image2) =="undefined"){%>
+                            <%}else if(doc.image2){%>
+                            <div class="tab-pane" id="pic-2"><img src="<%=doc.image2%>" /></div>
+                            <%}%>
+                            <% if(typeof(doc.image3) =="undefined"){%>
+                            <%}else if(doc.image3){%>
+                            <div class="tab-pane" id="pic-3"><img src="<%=doc.image3%>" /></div>
+                            <%}%>
+                            <% if(typeof(doc.image4) =="undefined"){%>
+                            <%}else if(doc.image4){%>
+                            <div class="tab-pane" id="pic-4"><img src="<%=doc.image4%>" /></div>
+                            <%}%>
+                            <% if(typeof(doc.image5) =="undefined"){%>
+                            <%}else if(doc.image5){%>
+                            <div class="tab-pane" id="pic-5"><img src="<%=doc.image5%>" /></div>
+                            <%}%>
+                        </div>
+                        <ul class="preview-thumbnail nav nav-tabs">
+                            <% if(typeof(doc.image) =="undefined"){%>
+                            <%}else if(doc.image){%>
+                            <li class="active"><a data-target="#pic-1" data-toggle="tab"><img
+                                        src="<%=doc.image%>" /></a></li>
+                            <%}%>
+                            <% if(typeof(doc.image2) =="undefined"){%>
+                            <%}else if(doc.image2){%>
+                            <li><a data-target="#pic-2" data-toggle="tab"><img
+                                        src="<%=doc.image2%>" /></a></li>
+                            <%}%>
+                            <% if(typeof(doc.image3) =="undefined"){%>
+                            <%}else if(doc.image3){%>
+
+                            <li><a data-target="#pic-3" data-toggle="tab"><img
+                                        src="<%=doc.image3%>" /></a></li>
+                            <%}%>
+                            <% if(typeof(doc.image4) =="undefined"){%>
+                            <%}else if(doc.image4){%>
+                            <li><a data-target="#pic-4" data-toggle="tab"><img
+                                        src="<%=doc.image4%>" /></a></li>
+                            <%}%>
+                            <% if(typeof(doc.image5) =="undefined"){%>
+                            <%}else if(doc.image5){%>
+                            <li><a data-target="#pic-5" data-toggle="tab"><img
+                                        src="<%=doc.image5%>" /></a></li>
+                            <%}%>
+                            </ul>
+
+                        </div>
+                        <div class="details col-md-6">
+                            <h3 class="product-title"><%=doc.nameTour%></h3>
+                            <p class="product-description">Chuyến đi <%=doc.nameTour%> cực kỳ thú vị và hoành tráng.</p>
+                            <h4 class="price">Giá Tour: <span><%=doc.price%> VNĐ</span></h4>
+                            <h4 class="price">Giá trẻ em: <span><%=doc.priceChildren%> VNĐ</span></h4>
+                            </p>
+                            <label>Khởi hành: <label><%=doc.dateStart%></label></label>
+                            <label>Thời gian: 2 ngày 1 đêm</label>
+                            <br>
+                            <div class="action">
+                                <a class="add-to-cart btn btn-default" type="button" href="/tour/pay/<%=doc._id%>">Đặt tour</a>
+                                <a class="add-to-cart btn btn-default" type="button" href="#">Liên hệ</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h2>Thông tin chi tiết</h2>
+            <div class="row">
+                <div class="col-md-4 order-md-2 mb-4">
+                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-muted">Hỗ Trợ Khách Hàng</span>
+                    </h4>
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <h6 class="my-0">Hotline: 19001006</h6>
+
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <h6 class="my-0">Email: foxold19597@gmail.com</h6>
+                        </li>
+                </div>
+                <div class="col-md-8 order-md-1">
+                    <%-doc.description%>
+                </div>
+            </div>
+        </div>
+        <br>
+        <% include ./shared/footer %>
+        <% include ./shared/javascripts %>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!-- views/admin/partials/navigationAdmin.ejs -->
+
+<!-- Sidebar quản lý -->
+<ul class="sidebar navbar-nav toggled">
+    <li class="nav-item active">
+        <a class="nav-link" href="/admin/">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Trang quản trị</span>
+        </a>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Quản lý Tour</span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <a class="dropdown-item" href="/admin/categorytour">Loại tour du lịch</a>
+            <a class="dropdown-item" href="/admin/tour">Danh sách Tours</a>
+            <a class="dropdown-item" href="/admin/placeStart">Địa điểm khời hành</a>
+        </div>
+    </li>
+
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-list"></i>
+            <span>Khuyến mãi</span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <a class="dropdown-item" href="/admin/promotion/">DS Khuyến mãi</a>
+            <a class="dropdown-item" href="#">KM Đã sử dụng</a>
+        </div>
+    </li>
+
+    <li class="nav-item dropdown">
+        <a class="nav-link" href="/admin/booked">
+            <i class="fas fa-fw fa-user-circle"></i>
+            <span>Khách hàng</span>
+        </a>
+    </li>
+
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="staff.html" id="pagesDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-fw fa-bars"></i>
+            <span>Quản lý Nhân viên</span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <a class="dropdown-item" href="/admin/pb/">Danh sách Phòng ban</a>
+            <a class="dropdown-item" href="/admin/staff/">Danh sách Nhân viên</a>
+        </div>
+    </li>
+
+    <li class="nav-item dropdown">
+        <a class="nav-link" href="#">
+            <i class="fas fa-fw fa-comments"></i>
+            <span>Quản lý bài viết</span>
+        </a>
+    </li>
+</ul>

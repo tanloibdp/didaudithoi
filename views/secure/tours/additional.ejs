@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- head của Admin -->
+    <% include ../shared/head %>
+    <script src="//cdn.ckeditor.com/4.13.0/full/ckeditor.js"></script>
+</head>
+
+<body id="page-top">
+
+    <!-- header của trang Admin -->
+    <% include ../shared/header %>
+    <div id="wrapper">
+
+        <!-- navigation của Admin -->
+        <% include ../shared/navigation %>
+
+        <!-- main của trang Admin -->
+        <div id="content-wrapper">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item text-primary">
+                    Thêm Mới Tour
+                </li>
+            </ol>
+
+            <div class="tab-pane" id="edit">
+                <form action="/admin/new/tour" method="POST" enctype="multipart/form-data">
+                    <div class="form-group row pl-5">
+                        <label class="col-lg-2 col-form-label form-control-label">Tên Tour</label>
+                        <div class="col-lg-9">
+                            <input required class="form-control" type="text" name="nameTour">
+                        </div>
+                    </div>
+                    <div class="form-group row pl-5">
+                        <label class="col-lg-2 col-form-label form-control-label">Phương Tiện</label>
+                        <div class="col-lg-9">
+                            <input required class="form-control" type="text" name="vehicle">
+                        </div>
+                    </div>
+                    <div class="form-group row pl-5">
+                        <label class="col-lg-2 col-form-label form-control-label">Ngày đi</label>
+                        <div class="col-lg-9">
+                            <input required class="form-control" type="date" name="dateStart">
+                        </div>
+                    </div>
+                    <div class="form-group row pl-5">
+                        <label class="col-lg-2 col-form-label form-control-label">Nơi khởi hành</label>
+                        <div class="col-lg-9">
+                            <select class="custom-select" name="placeStart">
+                                <% for (const item of placeStart){ %>
+                                <%if((placeStart.indexOf(item)+1)===1){%>
+                                <option value="<%=item._id%>" selected><%=item.placeStart%></option>
+                                <%}else{%>
+                                <option value="<%=item._id%>"><%=item.placeStart%></option>
+                                <% }}; %>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row pl-5">
+                        <label class="col-lg-2 col-form-label form-control-label">Giá người lớn</label>
+                        <div class="col-lg-9">
+                            <input required class="form-control" type="number" name="price">
+                        </div>
+                    </div>
+                    <div class="form-group row pl-5">
+                        <label class="col-lg-2 col-form-label form-control-label">Giá trẻ em</label>
+                        <div class="col-lg-9">
+                            <input required class="form-control" type="number" name="priceChildren">
+                        </div>
+                    </div>
+                    <div class="form-group row pl-5">
+                        <label class="col-lg-2 col-form-label form-control-label">Số lượng vé</label>
+                        <div class="col-lg-9">
+                            <input required class="form-control" type="number" name="tickets">
+                        </div>
+                    </div>
+                    <div class="form-group row pl-5">
+                        <label class="col-lg-2 col-form-label form-control-label">Hình đại diện:</label>
+                        <div class="col-lg-9">
+                            <input type="file" name="imageTour" required>
+                        </div>
+                    </div>
+                    <div class="form-group row pl-5">
+                        <label class="col-lg-2 col-form-label form-control-label">Hình ảnh 1:</label>
+                        <div class="col-lg-9">
+                            <input type="file" name="imageTour2">
+                        </div>
+                    </div>
+                    <div class="form-group row pl-5">
+                        <label class="col-lg-2 col-form-label form-control-label">Hình ảnh 2:</label>
+                        <div class="col-lg-9">
+                            <input type="file" name="imageTour3">
+                        </div>
+                    </div>
+                    <div class="form-group row pl-5">
+                        <label class="col-lg-2 col-form-label form-control-label">Hình ảnh 3:</label>
+                        <div class="col-lg-9">
+                            <input type="file" name="imageTour4">
+                        </div>
+                    </div>
+                    <div class="form-group row pl-5">
+                        <label class="col-lg-2 col-form-label form-control-label">Hình ảnh 4:</label>
+                        <div class="col-lg-9">
+                            <input type="file" name="imageTour5">
+                        </div>
+                    </div>
+            </div>
+            <div class="form-group row pl-5">
+                <label class="col-lg-2 col-form-label form-control-label">Lịch Trình</label>
+                <div class="col-lg-9">
+                    <textarea class="ckeditor" id="ckeditor" name="description">
+
+                            </textarea>
+                </div>
+            </div>
+
+            <div class="form-group row pl-5">
+                <label class="col-lg-2 col-form-label form-control-label"></label>
+                <div class="col-lg-9">
+                    <input type="submit" class="btn btn-primary" id="btnsub" value="Thêm mới">
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+    <!-- footer của admin -->
+    <% include ../shared/footer %>
+    </div>
+    <!-- Javascript -->
+    <% include ../shared/Javascripts %>
+</body>
+
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- head của Admin -->
+    <% include ../shared/head %>
+    <script src="//cdn.ckeditor.com/4.13.0/full/ckeditor.js"></script>
+</head>
+
+<body id="page-top">
+
+    <!-- header của trang Admin -->
+    <% include ../shared/header %>
+    <div id="wrapper">
+
+        <!-- navigation của Admin -->
+        <% include ../shared/navigation %>
+
+        <!-- main của trang Admin -->
+        <div id="content-wrapper">
+
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item text-primary"><%=tour.nameTour%></li>
+                <button type="button" class="btn btn-danger mt-auto ml-auto" data-toggle="modal"
+                    data-target="#exampleModal">
+                    Xóa
+                </button>
+            </ol>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Hỏi Lại Cho Chắc!</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn Có Thật Sự Muốn Xóa Nội Dung Này?????????
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Không nha</button>
+                            <a href="/admin/delete/tour/<%=tour._id%>"><button type="button"
+                                    class="btn btn-primary">Đúng rồi!</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="p-3">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Thông tin cá
+                            nhân</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Chỉnh Sửa thông tin</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content py-4">
+                    <div class="tab-pane active" id="profile">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="mb-3">Tên tour: </h5>
+                                <p><%=tour.nameTour%></p>
+                                <h5 class="mb-3">Phương Tiện: </h5>
+                                <p><%=tour.vehicle%></p>
+                                <h5 class="mb-3">Ngày đi: </h5>
+                                <p><%=tour.dateStart%></p>
+                                <h5 class="mb-3">Giá người lớn: </h5>
+                                <p><%=tour.price%></p>
+                                <h5 class="mb-3">Giá trẻ em: </h5>
+                                <p><%=tour.priceChildren%></p>
+                                <h5 class="mb-3">Số lượng vé: </h5>
+                                <p><%=tour.tickets%></p>
+                                <h5 class="mb-3">Tình trạng: </h5>
+                                <p><%=tour.status%></p>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="mb-3">Lịch Trình</h5>
+                                <div>
+                                    <%-tour.description%>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/row-->
+                    </div>
+                    <div class="tab-pane" id="edit">
+                        <form action="/admin/tour/<%=tour._id%>" role="form" method="POST"
+                            enctype="multipart/form-data">
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Tên Tour</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="text" name="nameTour" value="<%=tour.nameTour%>">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Phương Tiện</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="text" name="vehicle" value="<%=tour.vehicle%>">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Ngày đi</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="text" name="dateStart"
+                                        value="<%=tour.dateStart%>">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Địa điểm khởi hành</label>
+                                <div class="col-lg-9">
+                                    <select class="custom-select" name="placeStart">
+                                        <% for (const item of placeStart){ %>
+                                        <%if(item._id===tour._placeStart){%>
+                                        <option value="<%=item._id%>" selected><%=item.placeStart%></option>
+                                        <%}else{%>
+                                        <option value="<%=item._id%>"><%=item.placeStart%></option>
+                                        <% }}; %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Giá người lớn</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="number" name="price" value="<%=tour.price%>">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Giá trẻ em</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="number" name="priceChildren"
+                                        value="<%=tour.priceChildren%>">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Số lượng vé</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="number" name="tickets" value="<%=tour.tickets%>">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Hình đại diện:</label>
+                                <div class="col-lg-9">
+                                    <input type="file" name="imageTour">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Hình ảnh 1:</label>
+                                <div class="col-lg-9">
+                                    <input type="file" name="imageTour2">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Hình ảnh 2:</label>
+                                <div class="col-lg-9">
+                                    <input type="file" name="imageTour3">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Hình ảnh 3:</label>
+                                <div class="col-lg-9">
+                                    <input type="file" name="imageTour4">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Hình ảnh 4:</label>
+                                <div class="col-lg-9">
+                                    <input type="file" name="imageTour5">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Lịch Trình</label>
+                                <div class="col-lg-9">
+                                    <textarea class="ckeditor" id="ckeditor" name="description">
+                                        <%=tour.description%>
+                                    </textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label"></label>
+                                <div class="col-lg-9">
+                                    <input type="reset" class="btn btn-secondary" value="Thoát">
+                                    <input type="submit" class="btn btn-primary" value="Lưu">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- footer của admin -->
+        <% include ../shared/footer %>
+    </div>
+    <!-- Javascript -->
+    <% include ../shared/Javascripts %>
+</body>
+
+</html>

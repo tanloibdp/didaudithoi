@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ./shared/head %>
+</head>
+
+<body>
+
+    <% include ./shared/header %>
+
+    <!-- Code chính -->
+    <div class="container mb-4">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <h1 class="text-center">Các Tour Đã Đặt</h1>
+                            <tr>
+                                <th scope="col">Tour</th>
+                                <th scope="col">Vé người lớn</th>
+                                <th scope="col">Giá người lớn</th>
+                                <th scope="col">Vé trẻ em</th>
+                                <th scope="col">Giá trẻ em</th>
+                                <th scope="col">thời gian đặt tour</th>
+                                <th scope="col">Tình trạng</th>
+                                <th scope="col" class="text-right">Tổng chi phí</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%booked.forEach(element => {%>
+                            <tr>
+                                <td><img src="<%=element.image%>" style="height: 70px; width: 100px;" /> </td>
+                                <td class="h5"><span class="badge badge-pill badge-primary"><%=element.Ntickets%></span>
+                                </td>
+                                <td class="h5"><span class="badge badge-secondary"><%=element.price%> VNĐ</span></td>
+                                <td class="h5"><span
+                                        class="badge badge-pill badge-primary"><%=element.NCtickets%></span></td>
+                                <td class="h5"><span class="badge badge-secondary"><%=element.priceChildren%> VNĐ</span>
+                                </td>
+                                <td class="h5"><span class="badge badge-pill badge-danger"><%=element.dateBook%></span>
+                                </td>
+                                <td class="h5"><span class="badge badge-success"><%=element.status%></span></td>
+                                <td class="text-right h5"><span class="badge badge-info"><%=element.sumPrice%>
+                                        VNĐ</span></td>
+                            </tr>
+                            <%});%>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <% include ./shared/footer %>
+    <% include ./shared/chatlive %>
+    <% include ./shared/javascripts %>
+</body>
+
+</html>

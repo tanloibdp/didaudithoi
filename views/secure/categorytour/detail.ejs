@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- head của Admin -->
+    <% include ../shared/head %>
+</head>
+
+<body id="page-top">
+
+    <!-- header của trang Admin -->
+    <% include ../shared/header %>
+    <div id="wrapper">
+
+        <!-- navigation của Admin -->
+        <% include ../shared/navigation %>
+
+        <!-- main của trang Admin -->
+        <div id="content-wrapper">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item text-primary"><%=categoryTour.zone%></li>
+                <button class="btn btn-primary mt-auto ml-auto" data-toggle="modal" data-target="#exampleModaladd">Thêm
+                    mới</button>
+                <button type="button" class="btn btn-danger mt-auto" data-toggle="modal" data-target="#exampleModal">
+                    Xóa
+                </button>
+            </ol>
+
+            <!-- Modal xóa -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Hỏi Lại Cho Chắc!</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn Có Thật Sự Muốn Xóa Nội Dung Này?????????
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Không nha</button>
+                            <a href="/admin/delete/categorytour/<%=categoryTour._id%>"><button type="button"
+                                    class="btn btn-primary">Đúng rồi!</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal thêm -->
+            <div class="modal fade" id="exampleModaladd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Bổ sung tour du lịch!</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="" method="POST">
+                            <div class="modal-body">
+                                <div class="form-group row pl-5">
+                                    <label class="col-form-label form-control-label">Tour du lịch:</label>
+                                    <div class="col-lg-9">
+                                        <select class="custom-select" name="tourId">
+                                            <% for (const item of tours){ %>
+                                            <%if((tours.indexOf(item)+1)===1){%>
+                                            <option value="<%=item._id%>" selected><%=item.nameTour%></option>
+                                            <%}else{%>
+                                            <option value="<%=item._id%>"><%=item.nameTour%></option>
+                                            <% }}; %>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Không nha</button>
+                                <button type="submit" class="btn btn-primary">Thêm vào!</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!--Join Catelog Tour của trang Admin -->
+            <div class="p-3">
+                <table class="table table-striped border border-primary">
+                    <tdead>
+                        <tr class="table-primary">
+                            <!-- danh mục hiển thị -->
+                            <% for (const danhmuc of arrdanhmuc){ %>
+                            <th>
+                                <%= danhmuc %>
+                            </th>
+                            <% }; %>
+                        </tr>
+                    </tdead>
+                    <% joincategoryTour.forEach(element => { %>
+                    <tr>
+                        <td><%=element.nameTour %></td>
+                        <td><%=element.catagory %></td>
+                        <td><%=element.zone %></td>
+                        <td>
+                            <a href="/admin/delete/joincategorytour/<%=element._id%>?query=<%=categoryTour._id%>"><button type="button"
+                                    class="btn btn-danger">Xóa</button></a>
+                        </td>
+                    </tr>
+                    <% }); %>
+                </table>
+            </div>
+
+        </div>
+
+        <!-- footer của admin -->
+        <% include ../shared/footer %>
+    </div>
+
+    <!-- Javascript -->
+    <% include ../shared/Javascripts %>
+</body>
+
+</html>

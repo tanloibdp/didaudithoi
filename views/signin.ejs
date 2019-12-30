@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ./shared/headSign%>
+    <title>Didaudithoi.com</title>
+</head>
+
+<body>
+    <div class="container p-3">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">ĐĂNG NHẬP</h5>
+                        <form action="" method="POST" class="form-signin ">
+                            <div class="form-label-group mb-4">
+                                <% if(typeof(values) =="undefined"){
+                                    var email =  "";
+                                }else if(values){
+                                    var email = values.emailSignIn;
+                                }%>
+                                <input type="email" name="emailSignIn" value="<%=email%>" id="inputEmail"
+                                    class="form-control" placeholder="Email address" required autofocus>
+
+                                <label for="inputEmail">E-mail</label>
+                            </div>
+
+                            <div class="form-label-group mb-2">
+                                <% if(typeof(values) =="undefined"){
+                                var password = "";
+                                }else if(values){
+                                    var password = values.passwordSignIn;
+                                }%>
+                                <input type="password" value="<%=password%>" name="passwordSignIn" id="inputPassword"
+                                    class="form-control" placeholder="Password" required>
+                                <label for="inputPassword">Mật khẩu</label>
+                            </div>
+
+                            <% include ./shared/alertErrors %>
+
+                            <div class="custom-control custom-checkbox mb-1">
+                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                <p class="text" for="customCheck1"><a href="forgot-password.html">Quên mật khẩu</a></p>
+                            </div>
+
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">ĐĂNG
+                                NHẬP</button>
+                            <hr class="my-4">
+                            <button class="btn btn-lg btn-danger btn-google btn-block border" type="submit"><i
+                                    class="fab fa-google mr-2"></i> Đăng nhập bằng Google</button>
+                            <button class="btn btn-lg btn-bgfb btn-facebook btn-block border" type="submit"><i
+                                    class="fab fa-facebook-f mr-2"></i> Đăng nhập bằng Facebook</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

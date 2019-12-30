@@ -1,0 +1,63 @@
+<!-- search part start-->
+<section class="booking_part">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="booking_content">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="hotel" role="tabpanel" aria-labelledby="hotel-tab">
+                            <div class="booking_form">
+                                <form action="/search">
+                                    <div class="form-row">
+                                        <div class="form_colum">
+                                            <select class="nc_select" name="placeStart">
+                                                <option selected>Điểm khởi hành</option>
+                                                <% for (const item of placeStart){ %>
+                                                <%if(_placeStart === item._id){%>
+                                                <option value="<%=item._id%>" selected><%=item.placeStart%></option>
+                                                <% }%>
+                                                <option value="<%=item._id%>"><%=item.placeStart%></option>
+                                                <% }; %>
+                                            </select>
+                                        </div>
+                                        <div class="form_colum">
+                                            <input name="dateStart" id="datepicker_1" placeholder="Ngày Khởi Hành">
+                                        </div>
+                                        <div class="form_colum">
+                                            <select class="nc_select" name="price">
+                                                <option selected>Giá</option>
+                                                <% for (const item of danhmucPrice){ %>
+                                                <%if(_indexPrice === String(danhmucPrice.indexOf(item))){%>
+                                                <option value="<%=danhmucPrice.indexOf(item)%>" selected><%=item%>
+                                                </option>
+                                                <% }else{%>
+                                                <option value="<%=danhmucPrice.indexOf(item)%>"><%=item%></option>
+                                                <% }}; %>
+                                            </select>
+                                        </div>
+
+                                        <div class="form_colum">
+                                            <select name="vehicle" class="nc_select">
+                                                <option selected>Phương tiện</option>
+                                                <% for (const item of danhmucPT){ %>
+                                                <%if(_indexDanhmuc === String(danhmucPT.indexOf(item))){%>
+                                                <option value="<%=danhmucPT.indexOf(item)%>" selected><%=item%></option>
+                                                <% }else{%>
+                                                <option value="<%=danhmucPT.indexOf(item)%>"><%=item%></option>
+                                                <% }}; %>
+                                            </select>
+                                        </div>
+                                        <div class="form_btn">
+                                            <button type="submit" class="btn_1">Tìm Kiếm</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- search part end-->

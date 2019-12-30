@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include ./shared/head %>
+</head>
+
+<body>
+    <% include ./shared/header %>
+    <div class="container">
+        <div class="text-center text-uppercase">
+            <h2>Chi Tiết Thanh Toán</h2>
+        </div><br>
+
+        <div class="row">
+            <form action="" method="post">
+                <div class="col-md-12 order-md-2">
+                    <div class="card">
+                        <div class="container-fliud">
+                            <div class="wrapper row">
+                                <div class="preview col-md-5">
+                                    <div class="preview-pic tab-content">
+                                        <div class="tab-pane active" id="pic-1"><img src="<%=doc.image%>" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="details col-md-7">
+                                    <div class="row">
+                                        <div class="caption">
+                                            <h3 class="h4"><%=doc.nameTour%></h3>
+                                            <p><strong>Ngày khởi hành:</strong> <span><%=doc.dateStart%></span></p>
+                                            <p><i class="fa fa-users" aria-hidden="true"></i> Số chỗ còn nhận:
+                                                <span><%=doc.tickets%></span>
+                                            </p>
+                                            <div class="table-responsive">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col" class="text-left"></th>
+                                                            <th scope="col" class="text-center">Số người</th>
+                                                            <th scope="col" class="text-center"></th>
+                                                            <th scope="col" class="text-center">Giá</th>
+                                                            <th scope="col" class="text-right">Thành Tiền</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Người lớn</td>
+                                                            <td><input onchange="inputPriceOnchange()" id="inputPrice"
+                                                                    class="add-to-cart" type="number" min="1" value="1"
+                                                                    name="Ntickets" max="10" /></td>
+                                                            <td class="text-left">X</td>
+                                                            <td class="text-right" id="tdPrice"><%=doc.price%></td>
+                                                            <td class="text-right" id="tdsumPrice"></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>Trẻ em</td>
+                                                            <td><input onchange="inputPriceChildOnchange()"
+                                                                    id="inputPriceChild" class="add-to-cart"
+                                                                    type="number" min="0" value="0" name="NCtickets"
+                                                                    max="10" /></td>
+                                                            <td class="text-left">X</td>
+                                                            <td class="text-right" id="tdPriceChild">
+                                                                <%=doc.priceChildren%>
+                                                            </td>
+                                                            <td class="text-right" id="tdsumPriceChild"></td>
+                                                        </tr>
+                                                        <!-- <tr>
+                                                        <td>Mã Giảm Giá</td>
+                                                        <td></td>
+                                                        <td><input class="add-to-cart" type="number" min="1" value="325"
+                                                                name="adult" max="10" /></td>
+                                                        <td></td>
+                                                        <td>- 500.000 VNĐ</td>
+
+                                                    </tr> -->
+                                                        <tr>
+                                                            <td><strong>Tổng tiền</strong></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td class="text-right"><strong id="stsumPrice"></strong>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col mt-2">
+                            <div class="row">
+                                <div class="col-sm-12  col-md-6">
+                                    <a href="/tour"><button type="button"
+                                            class="btn btn-lg btn-block btn-warning text-uppercase">Chọn
+                                            tours khác</button></a>
+                                </div>
+                                <!-- <div class="col-sm-12 col-md-6 text-right">
+                                <button class="btn btn-lg btn-block btn-success text-uppercase">Đặt Tour(Trả trước)</button>
+                            </div> -->
+                                <div class="col-sm-12 col-md-6 text-right">
+                                    <button type="submit" class="btn btn-lg btn-block btn-success text-uppercase">Đặt
+                                        Tour</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+    </div><br><br>
+
+    <% include ./shared/footer %>
+    <% include ./shared/chatlive %>
+    <% include ./shared/javascripts %>
+    <script>
+        const inputPrice = document.getElementById('inputPrice');
+        const inputPriceChild = document.getElementById('inputPriceChild');
+        const tdPrice = document.getElementById('tdPrice');
+        const tdsumPrice = document.getElementById('tdsumPrice');
+        const tdPriceChild = document.getElementById('tdPriceChild');
+        const tdsumPriceChild = document.getElementById('tdsumPriceChild');
+        const stsumPrice = document.getElementById('stsumPrice');
+        tdsumPrice.innerText = String(Number(inputPrice.value) * Number(tdPrice.innerText)) + 'VND';
+        tdsumPriceChild.innerText = String(Number(inputPriceChild.value) * Number(tdPriceChild.innerText)) + 'VND';
+        stsumPrice.innerText = String(Number(inputPrice.value) * Number(tdPrice.innerText) + Number(inputPriceChild.value) * Number(tdPriceChild.innerText)) + 'VND';
+        function inputPriceOnchange() {
+            tdsumPrice.innerText = String(Number(inputPrice.value) * Number(tdPrice.innerText)) + 'VND';
+            stsumPrice.innerText = String(Number(inputPrice.value) * Number(tdPrice.innerText) + Number(inputPriceChild.value) * Number(tdPriceChild.innerText)) + 'VND';
+        }
+        function inputPriceChildOnchange() {
+            tdsumPriceChild.innerText = String(Number(inputPriceChild.value) * Number(tdPriceChild.innerText)) + 'VND';
+            stsumPrice.innerText = String(Number(inputPrice.value) * Number(tdPrice.innerText) + Number(inputPriceChild.value) * Number(tdPriceChild.innerText)) + 'VND';
+        }
+    </script>
+</body>
+
+</html>

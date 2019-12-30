@@ -1,0 +1,15 @@
+<% docs.forEach(element => {%>
+<div class="col-lg-4 col-md-4">
+    <div class="single_place">
+        <img src="<%=element.image%>" alt="" class="cover">
+        <div class="hover_Text d-flex align-items-end justify-content-between">
+            <div class="hover_text_iner">
+                <a href="/tour/<%=element._id%>" class="place_btn">Đặt Ngay</a>
+                <h4 style="color: #fff;"><%=element.nameTour%></h4>
+                <p>Thời Gian: 2 ngày 1 đêm</p>
+                <p>Giá: <%=element.price%> đ</p>
+            </div>
+        </div>
+    </div>
+</div>
+<%})%>

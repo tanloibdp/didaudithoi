@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include ./shared/head %>
+</head>
+
+<body>
+    <% include ./shared/header %>
+    <div style="height: 70px;"></div>
+    <% include ./shared/searchPage%>
+    <section class="top_place section_padding" style="padding: 20px 0px;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6">
+                    <div class="section_tittle text-center">
+                        <h2><%=title%></h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <% docs.forEach(element => {%>
+                <div class="col-lg-4 col-md-4">
+                    <div class="single_place">
+                        <img src="<%=element.image%>" alt="" class="cover">
+                        <div class="hover_Text d-flex align-items-end justify-content-between">
+                            <div class="hover_text_iner">
+                                <a href="/tour/<%=element._id%>" class="place_btn">Đặt Ngay</a>
+                                <h4 style="color: #fff;"><%=element.nameTour%></h4>
+                                <p>Thời Gian: 2 ngày 1 đêm</p>
+                                <p>Giá: <%=element.price%> đ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%})%>
+            </div>
+        </div>
+    </section>
+    <% include ./shared/footer %>
+    <% include ./shared/chatlive %>
+    <% include ./shared/javascripts %>
+</body>
+
+</html>
