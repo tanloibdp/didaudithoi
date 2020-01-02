@@ -94,16 +94,20 @@
                         <div class="col mt-2">
                             <div class="row">
                                 <div class="col-sm-12  col-md-6">
+                                    <a id="dttT" href="#"><button type="button"
+                                            class="btn btn-lg btn-block btn-primary text-uppercase">Đặt
+                                            Tour (Thanh Toán Trực Tiếp)</button></a>
+                                </div>
+                                <div class="col-sm-12 col-md-6 text-right">
+                                    <button type="submit" class="btn btn-lg btn-block btn-success text-uppercase">Đặt
+                                        Tour (Thanh Toán Trực Tuyến)</button>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-sm-12  col-md-12">
                                     <a href="/tour"><button type="button"
                                             class="btn btn-lg btn-block btn-warning text-uppercase">Chọn
                                             tours khác</button></a>
-                                </div>
-                                <!-- <div class="col-sm-12 col-md-6 text-right">
-                                <button class="btn btn-lg btn-block btn-success text-uppercase">Đặt Tour(Trả trước)</button>
-                            </div> -->
-                                <div class="col-sm-12 col-md-6 text-right">
-                                    <button type="submit" class="btn btn-lg btn-block btn-success text-uppercase">Đặt
-                                        Tour</button>
                                 </div>
                             </div>
                         </div>
@@ -124,17 +128,37 @@
         const tdPriceChild = document.getElementById('tdPriceChild');
         const tdsumPriceChild = document.getElementById('tdsumPriceChild');
         const stsumPrice = document.getElementById('stsumPrice');
+        const dttT = document.getElementById('dttT');
+
         tdsumPrice.innerText = String(Number(inputPrice.value) * Number(tdPrice.innerText)) + 'VND';
         tdsumPriceChild.innerText = String(Number(inputPriceChild.value) * Number(tdPriceChild.innerText)) + 'VND';
         stsumPrice.innerText = String(Number(inputPrice.value) * Number(tdPrice.innerText) + Number(inputPriceChild.value) * Number(tdPriceChild.innerText)) + 'VND';
         function inputPriceOnchange() {
-            tdsumPrice.innerText = String(Number(inputPrice.value) * Number(tdPrice.innerText)) + 'VND';
-            stsumPrice.innerText = String(Number(inputPrice.value) * Number(tdPrice.innerText) + Number(inputPriceChild.value) * Number(tdPriceChild.innerText)) + 'VND';
+            if (Number(inputPrice.value) < 1) {
+                inputPrice.value = 1
+            } else if (Number(inputPrice.value) > 10) {
+                inputPrice.value = 10
+            } else {
+                tdsumPrice.innerText = String(Number(inputPrice.value) * Number(tdPrice.innerText)) + 'VND';
+                stsumPrice.innerText = String(Number(inputPrice.value) * Number(tdPrice.innerText) + Number(inputPriceChild.value) * Number(tdPriceChild.innerText)) + 'VND';
+            }
+            dttTURL();
         }
         function inputPriceChildOnchange() {
-            tdsumPriceChild.innerText = String(Number(inputPriceChild.value) * Number(tdPriceChild.innerText)) + 'VND';
-            stsumPrice.innerText = String(Number(inputPrice.value) * Number(tdPrice.innerText) + Number(inputPriceChild.value) * Number(tdPriceChild.innerText)) + 'VND';
+            if (Number(inputPriceChild.value) < 0) {
+                inputPriceChild.value = 0
+            } else if (Number(inputPriceChild.value) > 10) {
+                inputPriceChild.value = 10
+            } else {
+                tdsumPriceChild.innerText = String(Number(inputPriceChild.value) * Number(tdPriceChild.innerText)) + 'VND';
+                stsumPrice.innerText = String(Number(inputPrice.value) * Number(tdPrice.innerText) + Number(inputPriceChild.value) * Number(tdPriceChild.innerText)) + 'VND';
+            }
+            dttTURL();
         }
+        function dttTURL() {
+            dttT.href = `/tour/book/${window.location.pathname.split('/')[3]}?Ntickets=${Number(inputPrice.value)}&NCtickets=${inputPriceChild.value}`;
+        }
+        dttTURL();
     </script>
 </body>
 

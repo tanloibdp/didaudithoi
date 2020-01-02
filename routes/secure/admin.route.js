@@ -1,4 +1,4 @@
-const express = require('Express');
+const express = require('express');
 const multer = require('multer');
 
 const controller = require('../../controllers/secure/admin.controller');

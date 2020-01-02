@@ -8,7 +8,6 @@ var db = require('../models/index.model');
 router.get('/', async function (req, res, next) {
   var danhmucPT = ['Vietjet', 'Air Asia', 'Jetstar'];
   var danhmucPrice = ['dưới 2 triệu', 'dưới 4 triệu', 'dưới 6 triệu', 'dưới 8 triệu'];
-
   //Lấy random doccument
   var docs = await db.tours.aggregate([{ $sample: { size: 6 } }]);
 

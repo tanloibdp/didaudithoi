@@ -6,12 +6,19 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const environment = require('./environments');
+const paypal = require('paypal-rest-sdk');
 
 const router = require('./routes/route');
 const sessionMiddleware = require('./middlewares/session.middleware');
 
-mongoose.connect('mongodb+srv://node-rest:' + environment.MONGO_PASS + '@node-rest-s7o6w.gcp.mongodb.net/test?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://node-rest:' + environment.MONGO_PASS + '@node-rest-s7o6w.gcp.mongodb.net/test?retryWrites=true&w=majority', { useUnifiedTopology: true, useNewUrlParser: true });
 mongoose.Promise = global.Promise;
+
+paypal.configure({
+  'mode': 'sandbox', //sandbox or live
+  'client_id': 'AeaYCx92AP655cD1bU4_-3OD-sUZPB6fHc-Z_EnsHVzGzvZ8LtnBjY6w1ECFRY_fJITgXiu99ntebV8K',
+  'client_secret': 'EOuwSeIKvCKp5kJTb7-3PUaFwJLdS9r50ctEztL0U5KNnD08_b2XueCdRyEoo0YfvbAWFE8yLHvyHD7m'
+});
 
 const app = express();
 

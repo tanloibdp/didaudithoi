@@ -52,13 +52,13 @@ module.exports.confirm = function (req, res, next) {
         from: environment.adminUser,
         to: req.body.user.email,
         subject: 'DIDAUDITHOI.COM MÃ XÁC NHẬN ' + Date.now(),
-        text: `Chào bạn, \nMời bạn vào đường link để bạn kích hoạt tài khoản của bạn: http://localhost:3000/signin/${req.body.user._id}`,
-
+        text: `Chào bạn, \nMời bạn vào đường link để bạn kích hoạt tài khoản của bạn: http://${environment.localhost}:${environment.port}/signin/${req.body.user._id}`,
     };
 
     //Step 3: 
-    transporter.sendMail(mailOptions, function () {
+    transporter.sendMail(mailOptions, function (err, info) {
         if (err) {
+            console.log(err);
             console.log('Lỗi trong lúc gửi mã!');
         } else {
             console.log('Email đã được gửi!');
